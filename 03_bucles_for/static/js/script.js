@@ -53,7 +53,7 @@ function aprobados() {
     let contadorAprobados = 0;
     const container = document.getElementById('resultado-containertres');
     const result3 = document.getElementById('result3');
-    for (let i = 0; i >= notas.length; i++) {
+    for (let i = 0; i <= notas.length; i++) {
         if (notas[i] >= 4.0) {
             contadorAprobados++;
         }
@@ -76,8 +76,8 @@ function inventario() {
     const result4 = document.getElementById('result4');
     result4.textContent = "";
     for (let i = 0; i < productos.length; i++) {
-        if (productos[i] !== "Agotado") continue;
-        result4.textContent = `${productos[i]}`;
+        if (productos[i] === "Agotado") continue;
+        result4.textContent += `${productos[i]}, `;
     }
     container.classList.remove('d-none');
 }
@@ -92,11 +92,14 @@ Al finalizar el ciclo, escribe en el párrafo:
 "La colecta reunió un total de: $[total]".*/
 
 function colecta() {
-    let numeros = [];
+    let aportes = [1500, 2000, 500, 3000, 1000];
+    let totalRecaudado = 0;
     const container = document.getElementById('resultado-containercinco');
     const result5 = document.getElementById('result5');
-
-    result5.textContent = `Contando: ${numeros.join(" - ")}`;
+    for (let i = 0; i < aportes.length; i++) {
+        totalRecaudado += aportes[i];
+    }
+    result5.textContent = `La colecta reunió un total de: ${totalRecaudado}`;
     container.classList.remove('d-none');
 }
 
@@ -109,11 +112,18 @@ Recorre el arreglo. Si el índice actual (i) es par
 y muéstralo en el párrafo. Si es impar, muéstralo normal.*/
 
 function vip() {
-    let numeros = [];
+    let asistentes = ["carlos", "MARIA", "pedro", "LUCIA"];
     const container = document.getElementById('resultado-containerseis');
     const result6 = document.getElementById('result6');
-
-    result6.textContent = `Contando: ${numeros.join(" - ")}`;
+    let listaFinal = [];
+    for (let i = 0; i < asistentes.length; i++) {
+        if (i % 2 === 0) {
+            listaFinal.push(asistentes[i] + " [VIP]");
+        } else {
+            listaFinal.push(asistentes[i]);
+        }
+    }
+    result6.textContent = listaFinal.join(", ");
     container.classList.remove('d-none');
 }
 
@@ -126,11 +136,17 @@ aumenta tu contador. Al final, inyecta en el párrafo:
 "El artículo [articuloBuscado] se encuentra [veces] veces en la bodega".*/
 
 function stock() {
-    let numeros = [];
+    let bodega = ["Lápiz", "Cuaderno", "Goma", "Cuaderno", "Regla", "Cuaderno"];
+    let articuloBuscado = "Cuaderno";
+    let vecesEncontrado = 0;
     const container = document.getElementById('resultado-containersiete');
     const result7 = document.getElementById('result7');
-
-    result7.textContent = `Contando: ${numeros.join(" - ")}`;
+    for (let i = 0; i < bodega.length; i++) {
+        if (bodega[i] === articuloBuscado) {
+            vecesEncontrado++;
+        }
+    }
+    result7.textContent = `El artículo ${articuloBuscado} se encuentra ${vecesEncontrado} veces en la bodega`;
     container.classList.remove('d-none');
 }
 
@@ -145,10 +161,14 @@ Recorre el arreglo. Si la temperatura es mayor a 30, inyecta en el párrafo:
 (Nota: el <br> hará que cada alerta aparezca en una nueva línea en la pantalla).*/
 
 function advertencia() {
-    let numeros = [];
-    const container = document.getElementById('resultado-containerdos');
-    const result2 = document.getElementById('result2');
-
-    result2.textContent = `Contando: ${numeros.join(" - ")}`;
+    let temperaturas = [22, 24, 28, 35, 21, 38];
+    const container = document.getElementById('resultado-containerocho');
+    const result8 = document.getElementById('result8');
+    result8.innerHTML = "";
+    for (let i = 0; i < temperaturas.length; i++) {
+        if (temperaturas[i] > 30) {
+            result8.innerHTML += "¡ALERTA! Temperatura crítica de " + temperaturas[i] + " grados.<br>" ;
+        }
+    }
     container.classList.remove('d-none');
 }
